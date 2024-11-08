@@ -3,7 +3,7 @@
 namespace EventManagementSystem.EventManagementSystem.Repository;
 
 public interface IEventRepository
-{    public Event? GetEventById(int id);
+{    public Event? GetEventById(Guid id);
      
      public List<Event> GetEventsByDate(DateTime date);
      
@@ -13,6 +13,6 @@ public interface IEventRepository
      
      public Event? UpdateEvent(Event @event);
      
-     public Event? DeleteEvent(Event @event);
+     public void DeleteEvent(Event @event);
 
 }
