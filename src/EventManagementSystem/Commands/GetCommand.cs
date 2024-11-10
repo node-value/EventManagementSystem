@@ -12,6 +12,7 @@ public class GetCommand(IEventRepository repo, int id) : ICommand
     
     public void Undo()
     { 
+        Console.WriteLine("Get: Nothing to undo");
     }
     
 }

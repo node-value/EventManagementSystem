@@ -1,0 +1,5 @@
+﻿##Event Management System
+
+Hello, this is my simple implementation of Event Management System, 
+it has all basic functionality and extra Command pattern implemented, commands like add, update, delete 
+could be undone. 

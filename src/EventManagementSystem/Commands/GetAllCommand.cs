@@ -14,5 +14,6 @@ public class GetAllCommand(IEventRepository repo) : ICommand
     
     public void Undo()
     { 
+        Console.WriteLine("GetAll: Nothing to undo");
     }
 }
