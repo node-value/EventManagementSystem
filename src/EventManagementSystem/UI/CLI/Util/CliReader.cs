@@ -12,10 +12,10 @@ public static class CliReader
             CliPrinter.PrintCommands();
             var input = Console.ReadLine().Trim().ToLower();
 
-            if (CliValidator.ValidateCommandNumber(input))
-                return (ECommands)Enum.Parse(typeof(ECommands), input);
+            if (CliValidator.ValidateCommand(input))
+                return (ECommands)Enum.Parse(typeof(ECommands), input, ignoreCase:true);
             
-            Console.WriteLine("Invalid Command, please use command number");
+            Console.WriteLine("Invalid Command, please use command number or its name.");
         }
     }
 

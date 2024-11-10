@@ -4,12 +4,12 @@ namespace EventManagementSystem.EventManagementSystem.UI.CLI.Util;
 
 public static class CliValidator
 {
-    public static bool ValidateCommandNumber(string input)
+    public static bool ValidateCommand(string input)
     {
         if (int.TryParse(input, out var number))
             return number >= 1 && number <= Enum.GetNames(typeof(ECommands)).Length;
         
-        return false;
+        return Enum.TryParse<ECommands>(input, ignoreCase: true, out _);
     }
 
     public static bool ValidateEventName(string input)
