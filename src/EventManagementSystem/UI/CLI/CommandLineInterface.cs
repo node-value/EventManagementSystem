@@ -37,13 +37,8 @@ public class CommandLineInterface(CommandController commandController, IEventRep
             }
             else
             {
-                ExecuteCommand(command);
+                commandController.ExecuteCommand(_commandMap[command].Invoke());
             }
         }
-    }
-    
-    private void ExecuteCommand(ECommands command)
-    {
-        commandController.ExecuteCommand(_commandMap[command].Invoke());
     }
 }
