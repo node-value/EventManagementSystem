@@ -5,18 +5,21 @@ namespace EventManagementSystem.EventManagementSystem.UI.CLI.Util;
 
 public static class CliPrinter
 {
+
+    public static void PrintEvent(Event? e)
+    {
+        Console.WriteLine(e is null
+            ? "No event found"
+            : $"\nID: {e.Id}\nName: {e.Name}\nDescription: {e.Description}\nDate: {e.Date}\nLocation: {e.Location}\n");
+    }
     public static void PrintEvents(List<Event> events)
     {
         if (events.Count == 0)
         {
             Console.WriteLine("No events found");
         }
+        events.ForEach(PrintEvent);
         
-        foreach (var e in events)
-        {
-            Console.WriteLine(
-                $"\nID: {e.Id}\nName: {e.Name}\nDescription: {e.Description}\nDate: {e.Date}\nLocation: {e.Location}\n");
-        }
     }
     
     public static void PrintGreetings()
