@@ -28,7 +28,17 @@ public class CommandLineInterface(CommandController commandController, IEventRep
     {
         CliPrinter.PrintGreetings();
         while (true)
-            ExecuteCommand(ReadCommand());
+        {
+            var command = ReadCommand();
+            if (command == ECommands.Undo)
+            {
+                commandController.UndoLastCommand();
+            }
+            else
+            {
+                ExecuteCommand(command);
+            }
+        }
     }
     
     private void ExecuteCommand(ECommands command)

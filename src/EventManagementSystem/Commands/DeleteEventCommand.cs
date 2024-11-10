@@ -17,7 +17,7 @@ public class DeleteEventCommand : ICommand
     {
         if (_event != null)
         {
-            _event = _event.Clone();
+            _event = Event.Clone(_event);
             _repo.DeleteEvent(_event);
         }
     }

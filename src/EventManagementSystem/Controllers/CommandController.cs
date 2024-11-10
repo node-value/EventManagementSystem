@@ -19,7 +19,9 @@ public class CommandController
             var lastCommand = _commandHistory.Pop();
             lastCommand.Undo();
         }
-
-        Console.WriteLine("No commands to undo.");
+        else
+        {
+            Console.WriteLine("No commands to undo.");
+        }
     }
 }

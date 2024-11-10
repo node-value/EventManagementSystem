@@ -2,5 +2,5 @@
 
 public enum ECommands
 {
-    GetAll = 1, Add, Delete, Update, Exit
+    GetAll = 1, Add, Delete, Update, Exit, Undo
 }

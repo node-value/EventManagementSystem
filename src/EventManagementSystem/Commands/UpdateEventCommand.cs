@@ -9,8 +9,11 @@ public class UpdateEventCommand(IEventRepository repo, Event @event) : ICommand
 
     public void Execute()
     {
-        _oldEvent = @event.Clone();
+        var e = repo.GetEventById(@event.Id);
+        if (e == null) return;
+        _oldEvent = Event.Clone(e);
         repo.UpdateEvent(@event);
+
     }
     
     public void Undo()

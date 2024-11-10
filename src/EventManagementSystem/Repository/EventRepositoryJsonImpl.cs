@@ -18,9 +18,12 @@ public class EventRepositoryJsonImpl : IEventRepository
     
     private void ReadAllEvents()
     {
-        if (File.Exists(Path))
-            _events = JsonConvert.DeserializeObject<List<Event>>(
-                File.ReadAllText(Path)) ?? [];
+        if (!File.Exists(Path)) return;
+        
+        _events = JsonConvert.DeserializeObject<List<Event>>(
+            File.ReadAllText(Path)) ?? [];
+        Event.SetIdCounter(_events.Max(e => e.Id));
+
     }
 
     private void WriteAllEvents()
@@ -39,19 +42,22 @@ public class EventRepositoryJsonImpl : IEventRepository
         return _events;
     }
 
-    public Event? SaveEvent(Event @event)
+    public void SaveEvent(Event @event)
     {
         _events.Add(@event);
+        _eventsById.Add(@event.Id, @event);
         WriteAllEvents();
-        return @event;
     }
 
-    public Event? UpdateEvent(Event @event)
+    public void UpdateEvent(Event @event)
     {
-        var eToUpdate = _eventsById[@event.Id];
-        UpdateProperties(eToUpdate, @event);
-        WriteAllEvents();
-        return eToUpdate;
+        var eToUpdate = _eventsById.GetValueOrDefault(@event.Id, null);
+        if (eToUpdate != null) {
+            UpdateProperties(eToUpdate, @event);
+            WriteAllEvents();
+            return;
+        }
+        Console.WriteLine($"Event {@event.Id} was not found");
     }
 
     private static void UpdateProperties(Event eToUpdate, Event @event)

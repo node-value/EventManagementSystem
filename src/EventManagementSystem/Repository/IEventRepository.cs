@@ -8,9 +8,9 @@ public interface IEventRepository
      
      List<Event> GetAllEvents();
      
-     Event? SaveEvent(Event @event);
+     void SaveEvent(Event @event);
      
-     Event? UpdateEvent(Event @event);
+     void UpdateEvent(Event @event);
      
      void DeleteEvent(Event @event);
 
