@@ -3,16 +3,15 @@
 namespace EventManagementSystem.EventManagementSystem.Repository;
 
 public interface IEventRepository
-{    public Event? GetEventById(Guid id);
+{    
+     Event? GetEventById(int id); 
      
-     public List<Event> GetEventsByDate(DateTime date);
+     List<Event> GetAllEvents();
      
-     public List<Event> GetAllEvents();
+     Event? SaveEvent(Event @event);
      
-     public Event? SaveEvent(Event @event);
+     Event? UpdateEvent(Event @event);
      
-     public Event? UpdateEvent(Event @event);
-     
-     public void DeleteEvent(Event @event);
+     void DeleteEvent(Event @event);
 
 }
