@@ -13,6 +13,9 @@ public class CommandLineInterface(CommandController commandController, IEventRep
         { ECommands.Get, () => new GetCommand(repo, CliReader.ReadEventId()) },
         { ECommands.Add, () => new AddEventCommand(repo, CliReader.ReadEvent()) },
         { ECommands.Delete, () => new DeleteEventCommand(repo, CliReader.ReadEventId()) },
+        { ECommands.Undo, () => new UndoCommand(commandController) },
+        { ECommands.Help, () => new HelpCommand() },
+        { ECommands.Exit, () => new ExitCommand() },
         { ECommands.Update, () => 
             {
                 var id = CliReader.ReadEventId();
@@ -21,9 +24,6 @@ public class CommandLineInterface(CommandController commandController, IEventRep
                 return new UpdateEventCommand(repo, e);
             }
         },
-        { ECommands.Undo, () => new UndoCommand(commandController)},
-        { ECommands.Help, () => new HelpCommand()},
-        { ECommands.Exit, () => new ExitCommand()}
     };
 
     public void Run()
