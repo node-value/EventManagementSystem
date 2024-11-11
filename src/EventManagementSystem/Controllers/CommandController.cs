@@ -9,7 +9,9 @@ public class CommandController
     public void ExecuteCommand(ICommand command)
     {
         command.Execute();
-        _commandHistory.Push(command);
+        
+        if (command is not INonPersistentCommand) 
+            _commandHistory.Push(command);
     }
 
     public void UndoLastCommand()

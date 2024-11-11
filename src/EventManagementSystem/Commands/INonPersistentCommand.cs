@@ -1,0 +1,3 @@
+﻿namespace EventManagementSystem.EventManagementSystem.Commands;
+
+public interface INonPersistentCommand;

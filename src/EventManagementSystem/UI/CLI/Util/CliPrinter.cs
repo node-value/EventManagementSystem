@@ -10,7 +10,7 @@ public static class CliPrinter
     {
         Console.WriteLine(e is null
             ? "No event found"
-            : $"\nID: {e.Id}\nName: {e.Name}\nDescription: {e.Description}\nDate: {e.Date}\nLocation: {e.Location}\n");
+            : $"\nID: {e.Id}\nName: {e.Name}\nDescription: {e.Description}\nDate: {DateOnly.FromDateTime(e.Date)}\nLocation: {e.Location}\n");
     }
     public static void PrintEvents(List<Event> events)
     {
@@ -34,6 +34,6 @@ public static class CliPrinter
         var commands = Enum.GetNames(typeof(ECommands));
         
         for (var i = 0; i < commands.Length; i++)
-            Console.WriteLine($"{i + 1}. {commands[i]}");
+            Console.WriteLine($"{i + 1}. {commands[i].ToLower()}");
     }
 }

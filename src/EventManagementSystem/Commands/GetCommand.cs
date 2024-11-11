@@ -3,7 +3,7 @@ using EventManagementSystem.EventManagementSystem.UI.CLI.Util;
 
 namespace EventManagementSystem.EventManagementSystem.Commands;
 
-public class GetCommand(IEventRepository repo, int id) : ICommand
+public class GetCommand(IEventRepository repo, int id) : ICommand, INonPersistentCommand
 {
     public void Execute()
     {

@@ -5,7 +5,7 @@ using EventManagementSystem.EventManagementSystem.UI.CLI.Util;
 
 namespace EventManagementSystem.EventManagementSystem.Commands;
 
-public class GetAllCommand(IEventRepository repo) : ICommand
+public class GetAllCommand(IEventRepository repo) : ICommand, INonPersistentCommand
 {
     public void Execute()
     {

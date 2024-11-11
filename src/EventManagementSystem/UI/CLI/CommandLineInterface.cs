@@ -1,6 +1,5 @@
 ﻿using EventManagementSystem.EventManagementSystem.Commands;
 using EventManagementSystem.EventManagementSystem.Controllers;
-using EventManagementSystem.EventManagementSystem.Model;
 using EventManagementSystem.EventManagementSystem.Repository;
 using EventManagementSystem.EventManagementSystem.UI.CLI.Util;
 
@@ -22,23 +21,17 @@ public class CommandLineInterface(CommandController commandController, IEventRep
                 return new UpdateEventCommand(repo, e);
             }
         },
+        { ECommands.Undo, () => new UndoCommand(commandController)},
+        { ECommands.Help, () => new HelpCommand()},
         { ECommands.Exit, () => new ExitCommand()}
     };
 
     public void Run()
     {
         CliPrinter.PrintGreetings();
+        CliPrinter.PrintCommands();
         while (true)
-        {
-            var command = CliReader.ReadCommand();
-            if (command == ECommands.Undo)
-            {
-                commandController.UndoLastCommand();
-            }
-            else
-            {
-                commandController.ExecuteCommand(_commandMap[command].Invoke());
-            }
-        }
+            commandController.ExecuteCommand(
+                _commandMap[CliReader.ReadCommand()].Invoke());
     }
 }
